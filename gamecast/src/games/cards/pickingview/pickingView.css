@@ -1,0 +1,118 @@
+.cards-submitted-list {
+  width: 75%;
+  position: fixed;
+  right: 12.5%;
+  top: 2%;
+  text-align: center;
+  list-style: none;
+}
+.card-submitted-title-container {
+  background: black;
+  color: white;
+  border-radius: 10px;
+  padding: 5%;
+  margin: 2%;
+}
+.card-submitted-title-container-white {
+  background: white;
+  border: 1px solid black;
+  color: black;
+  border-radius: 10px;
+  padding: 5%;
+  margin: 2%;
+}
+
+
+/* ===========================================================================*/
+/* === Animations ============================================================*/
+/* ===========================================================================*/
+
+
+
+
+/* ===========================================================================*/
+/* === Cards =================================================================*/
+/* ===========================================================================*/
+
+img.logo {
+  width: 80%;
+  position: absolute;
+  height: auto;
+  bottom: 0;
+  left: 20px;
+  border-radius: 75px;
+  overflow: hidden;
+}
+
+img#logInLogo{
+  overflow: hidden;
+  height: 10%;
+}
+
+
+.white-text{
+  color: white;
+}
+
+/* Gloabal Classes
+/* Card View */
+
+.black-card-container {
+  position: fixed;
+  left: calc((100% - (80vh/2))/2);
+  top: 30%;
+  height: 60vh;
+  width: calc(80vh/2);
+  border-radius: 50px;
+  box-shadow: darkgray 10px 10px;
+  background: white;
+  color: black;
+  overflow: hidden;
+}
+
+.white-card-container{
+  position: fixed;
+  left: calc((100% - (80vh/2))/2);
+  top: 10%;
+  height: 15vh;
+  width: calc(80vh/2);
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: darkgray 10px 10px;
+  background: white;
+  color: black;
+  overflow: hidden;
+}
+
+#whiteCardLabel {
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+#blackCardLabel {
+  position: relative;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 15%;
+}
+
+.black-card {
+  background: rgb(35, 31, 32);
+  color: white;
+}
+
+.white-card {
+  background: rgb(255, 255, 255);
+  color: black;
+}
+
+.cards-to-choose{
+  position: absolute;
+  top: 30%;
+  width: calc(80vh/2);
+  left:calc((100% - (80vh/2))/2);
+
+
+}

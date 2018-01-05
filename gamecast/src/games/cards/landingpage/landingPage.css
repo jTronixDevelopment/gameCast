@@ -1,0 +1,22 @@
+.landing-page-main-content{
+  height: 100vh;
+  width: 100vw;
+  overflow:hidden;
+  background: darkgrey;
+}
+
+.landing-page-pop-up{
+  position: absolute;
+  top: 25%;
+  left: 10%;
+  height: auto;
+  width: 80%;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 10px 10px;
+  padding-bottom: 20px;
+}
+
+.landing-page-roomcode-input,.landing-page-input{
+  border: 1px solid lightgrey;
+}
