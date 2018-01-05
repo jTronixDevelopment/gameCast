@@ -1,0 +1,25 @@
+.status-bar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: black;
+  color: white;
+  list-style: none;
+  height: auto;
+  z-index: 1000;
+}
+
+.sb-list {
+  text-align: center;
+  float: left;
+  color: inherit;
+  background: inherit;
+  width: calc(25% - 2%);
+  padding: 1%;
+  height: 100%;
+}
+
+ul.status-bar>li.sb-list {
+  height: ;
+  % font-size: 10px;
+}
