@@ -6,15 +6,20 @@ import Button from './../components/button';
 import Icon from './../../imgs/Icon.png';
 import Add from './../../imgs/add.png';
 
+import io from 'socket.io-client';
+
+let socket = io.connect('http://localhost:4000/game1');
 
 export default class App extends Component {
   constructor(){
     super();
-    this.test='none'
+    this.test='none';
+    console.log(socket)
   }
 
   buttonHandler(){
     console.log("Working");
+
   }
 
   componentDidMount(){
