@@ -1,45 +1,21 @@
-const server = require('http').createServer();
-
-const io = require('socket.io')(server, {
+const socketServer = require('http').createServer();
+const io = require('socket.io')(socketServer, {
   serveClient: false,
-  // below are engine.IO options
   pingInterval: 10000,
   pingTimeout: 5000,
   cookie: false
 });
+const game1 = io.of('/game1'); // Name Space of game1
+const game2 = io.of('/game2'); // Name Space of game2
+const game3 = io.of('/game3'); // Name Space of game3
+var ioHandlers = require('./ioHandlers.js'); // Will inport all functions from ioHandlers
 
-server.listen(4000);
-
-
-var ioHandlers = require('./ioHandlers.js'); // Will export all functions from ioHandlers File
-
+socketServer.listen(4000);
 console.log("Socket Server Running on 4000!");
 
-var game1 = io.of('/game1'); // Name Space of game1
-var game2 = io.of('/game2'); // Name Space of game2
-var game3 = io.of('/game3'); // Name Space of game3
+// Where all the function handlers are assigned to each name space.
 
-io.on('connection',(socket)=>{ // Generic "/" route which everyone hits first
-
-  // Logic for joining room
-  console.log("Connection")
-
-  socket.on('joinGame',(msg)=>{
-      if(msg === "game1"){
-
-      } else {
-
-      }
-  })
-  // Logic for starting room
-
-  socket.on('startGame',()=>{
-    console.log(msg);
-  })
-
-  // logic for leaving room
-
-});
+io.on('connection',(socket)=>{ ioHandlers.ioHandler(socket) }); // Handles initial Connections
 
 game1.on('connection',(socket)=>{ ioHandlers.gameHandler1(socket) })
 game2.on('connection',(socket)=>{ ioHandlers.gameHandler2(socket) })
