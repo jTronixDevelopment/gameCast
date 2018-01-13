@@ -8,7 +8,7 @@ import Add from './../../imgs/add.png';
 
 import io from 'socket.io-client';
 
-var socket = io.connect('107.20.151.23:4000/');
+var socket = io.connect('https://projectxtv.herokuapp.com:4000/');
 
 export default class App extends Component {
   constructor(){
