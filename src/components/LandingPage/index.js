@@ -8,7 +8,7 @@ import Add from './../../imgs/add.png';
 
 import io from 'socket.io-client';
 
-let socket = io.connect('http://localhost:4000/game1');
+var socket = io.connect('107.20.151.23:4000/');
 
 export default class App extends Component {
   constructor(){
