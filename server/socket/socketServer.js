@@ -1,5 +1,5 @@
 const socketServer = require('http').createServer();
-const io = require('socket.io')(server, {
+const io = require('socket.io')(socketServer, {
   serveClient: false,
   pingInterval: 10000,
   pingTimeout: 5000,
