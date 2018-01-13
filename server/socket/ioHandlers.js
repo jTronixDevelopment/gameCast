@@ -2,6 +2,7 @@
 
 var gameHandler1 = (socket)=>{
   console.log("Someone Joined Game1")
+  socket.on("test",()=>{ console.log("poop")})
 }
 
 var gameHandler2 = (socket)=>{
