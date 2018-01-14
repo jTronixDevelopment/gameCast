@@ -10,7 +10,7 @@ const game2 = io.of('/game2'); // Name Space of game2
 const game3 = io.of('/game3'); // Name Space of game3
 var ioHandlers = require('./ioHandlers.js'); // Will inport all functions from ioHandlers
 
-socketServer.listen(4000);
+socketServer.listen(5000);
 console.log("Socket Server Running on 4000!");
 
 // Where all the function handlers are assigned to each name space.
