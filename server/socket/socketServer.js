@@ -1,16 +1,24 @@
-const socketServer = require('http').createServer();
-const io = require('socket.io')(socketServer, {
-  serveClient: false,
-  pingInterval: 10000,
-  pingTimeout: 5000,
-  cookie: false
-});
+
+const express = require('express');
+const socketIO = require('socket.io');
+const path = require('path');
+
+const PORT = process.env.PORT || 3000;
+const INDEX = path.join(__dirname, 'index.html');
+
+const server = express()
+  .use((req, res) => res.sendFile(INDEX) )
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+const io = socketIO(server);
+
 const game1 = io.of('/game1'); // Name Space of game1
 const game2 = io.of('/game2'); // Name Space of game2
 const game3 = io.of('/game3'); // Name Space of game3
 var ioHandlers = require('./ioHandlers.js'); // Will inport all functions from ioHandlers
+// const PORT = process.env.PORT || 5000;
 
-socketServer.listen(5000);
+// socketServer.listen(PORT);
 console.log("Socket Server Running on 4000!");
 
 // Where all the function handlers are assigned to each name space.
