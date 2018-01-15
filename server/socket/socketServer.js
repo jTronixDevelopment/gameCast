@@ -1,13 +1,4 @@
-const express = require('express');
-const socketIO = require('socket.io');
-const path = require('path');
-
-const PORT = process.env.PORT || 3000;
-
-const server = express()
-  .use((req, res) => res.sendFile(INDEX) )
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
+const server = require('http').createServer();
 
 const io = require('socket.io')(server, {
   serveClient: false,
@@ -17,7 +8,7 @@ const io = require('socket.io')(server, {
   cookie: false
 });
 
-
+server.listen(4000);
 
 
 var ioHandlers = require('./ioHandlers.js'); // Will export all functions from ioHandlers File
