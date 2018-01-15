@@ -22,32 +22,40 @@ npm start
 ```
 
 ## Testing
-
+Starting the test Server
 ```sh
-npm test
+npm start
 ```
 
 ## Development
 
-
+Inside landingPage directory uncomment
 ```sh
-After Navigating into Pojectx directory
-run npm start
+var socket = io.connect(window.location.hostname + ":5000"); // Dev
+and comment
+var socket = io.connect(window.location.hostname); // Prod
 
-This will run the server for the react aspect.
-
-Then in another terminal instance navigate to the server folder and run the socket server with the following
-
-nodemon socketServer.js
-
-this will create a Dev Server.
-
-
+```
+in the projectX directory run
+```sh
+npm run-script build
+```
+then
+```sh
+npm start
+```
+Finally in the server directory run
+```sh
+node index
 ```
 
 
-## Tasks
+## Production
 
+Inside landingPage directory comment
 ```sh
-  FUCK ME
+var socket = io.connect(window.location.hostname + ":5000"); // Dev
+and uncomment
+var socket = io.connect(window.location.hostname); // Prod
+
 ```
