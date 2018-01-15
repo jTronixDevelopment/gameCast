@@ -1,62 +1,50 @@
-// src/components/App/index.js
-import React, { Component } from 'react';
-import './style.css';
+//New Server
+const express = require('express');
+var app = express();
+const path = require('path');
 
-import Button from './../components/button';
-import Icon from './../../imgs/Icon.png';
-import Add from './../../imgs/add.png';
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-import io from 'socket.io-client';
+server.listen(process.env.PORT || 5000);// For production
 
-// var socket = io.connect(window.location.hostname); // Comment out for testing
-var socket = io.connect(window.location.hostname + ":5000"); // Comment out for production
+app.use(express.static(path.resolve(__dirname, '..', 'build')));
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html')));
 
-export default class App extends Component {
-  constructor(){
-    super();
-    this.test='none';
-  }
+//==============================================================================
+//=== Socket IO Stuff ==========================================================
+//==============================================================================
 
-  gameValidator(){
-    var roomCode = document.getElementById("roomCode").value;
-    switch (roomCode[0]) {
-      case 'c' :
-        break;
-      default:
+var ioHandlers = require('./socket/ioHandlers.js'); // Will export all functions from ioHandlers File
 
-    }
-  }
+console.log(`Socket Server Running on ${process.env.PORT || 5000}!`);
 
-  buttonHandler(){
-    if(document.getElementById('roomCode').value[0] === 'c'){
-      console.log(`You Are playing Cards`);
-    }
-  }
+var game1 = io.of('/game1'); // Name Space of game1
+var game2 = io.of('/game2'); // Name Space of game2
+var game3 = io.of('/game3'); // Name Space of game3
 
-  componentDidMount(){
-    var card = document.getElementById('landingPageCard');
-    card.style.top = '10%';
+io.on('connection',(socket)=>{ // Generic "/" route which everyone hits first
 
-    socket.on("news",(msg)=>{
-      console.log(msg);
-    })
-  }
+  // Logic for joining room
+  console.log("Connection Made")
 
-  render() {
-    return (
-        <div id="landingPageCard" className="card">
-          <div className="card-header text-center">
-            <img className='icon' src={ Icon }/>
-          </div>
-          <div className="card-body">
-            <h5 className="card-title">Enter Room Code</h5>
-            <input id='roomCode' maxLength="5" placeholder="Enter 5 Digit Room Code" className="full-width" onChange={this.gameValidator.bind(this)}/>
-            <h5 className="card-title">Nickname</h5>
-            <input type='text' maxLength="15" placeholder="Enter Nickname Limit 15 characters." className="full-width" />
-            <Button text="Play Game" func={ this.buttonHandler.bind(this) }/>
-          </div>
-          <b>Powered By <a href="http://ryanjohnson-engineer.com/">jTronix Developement</a></b>
-        </div>
-    );
-  }
-}
+  socket.on('joinGame',(msg)=>{
+      if(msg === "game1"){
+
+      } else {
+
+      }
+  })
+  // Logic for starting room
+
+  socket.on('startGame',()=>{
+    console.log(msg);
+  })
+
+  // logic for leaving room
+
+});
+
+game1.on('connection',(socket)=>{ ioHandlers.gameHandler1(socket) })
+game2.on('connection',(socket)=>{ ioHandlers.gameHandler2(socket) })
+game3.on('connection',(socket)=>{ ioHandlers.gameHandler3(socket) })

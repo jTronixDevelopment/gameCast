@@ -1,19 +1,23 @@
-const server = require('http').createServer();
+//New Server
+const express = require('express');
+var app = express();
+const path = require('path');
 
-const io = require('socket.io')(server, {
-  serveClient: false,
-  // below are engine.IO options
-  pingInterval: 10000,
-  pingTimeout: 5000,
-  cookie: false
-});
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-server.listen(9000);
+server.listen(process.env.PORT || 5000);// For production
 
+app.use(express.static(path.resolve(__dirname, '..', 'build')));
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html')));
 
-var ioHandlers = require('./ioHandlers.js'); // Will export all functions from ioHandlers File
+//==============================================================================
+//=== Socket IO Stuff ==========================================================
+//==============================================================================
 
-console.log("Socket Server Running on 4000!");
+var ioHandlers = require('./socket/ioHandlers.js'); // Will export all functions from ioHandlers File
+
+console.log(`Socket Server Running on ${process.env.PORT || 5000}!`);
 
 var game1 = io.of('/game1'); // Name Space of game1
 var game2 = io.of('/game2'); // Name Space of game2
@@ -22,7 +26,7 @@ var game3 = io.of('/game3'); // Name Space of game3
 io.on('connection',(socket)=>{ // Generic "/" route which everyone hits first
 
   // Logic for joining room
-  console.log("Connection")
+  console.log("Connection Made")
 
   socket.on('joinGame',(msg)=>{
       if(msg === "game1"){
