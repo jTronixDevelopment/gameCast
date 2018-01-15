@@ -8,8 +8,8 @@ import Add from './../../imgs/add.png';
 
 import io from 'socket.io-client';
 
-// var socket = io.connect(window.location.hostname + ":5000"); // Dev
-var socket = io.connect(window.location.hostname);// Prod
+var socket = io.connect(window.location.hostname + ":5000"); // Dev
+// var socket = io.connect(window.location.hostname);// Prod
 
 export default class App extends Component {
   constructor(){
