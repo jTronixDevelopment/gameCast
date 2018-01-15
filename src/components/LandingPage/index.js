@@ -1,50 +1,58 @@
-//New Server
-const express = require('express');
-var app = express();
-const path = require('path');
+// src/components/App/index.js
+import React, { Component } from 'react';
+import './style.css';
 
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+import Button from './../components/button';
+import Icon from './../../imgs/Icon.png';
+import Add from './../../imgs/add.png';
 
-server.listen(process.env.PORT || 5000);// For production
+import io from 'socket.io-client';
 
-app.use(express.static(path.resolve(__dirname, '..', 'build')));
-app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html')));
+// var socket = io.connect(window.location.hostname + ":5000"); // Dev
+var socket = io.connect(window.location.hostname);// Prod
 
-//==============================================================================
-//=== Socket IO Stuff ==========================================================
-//==============================================================================
+export default class App extends Component {
+  constructor(){
+    super();
+    this.test='none';
+  }
 
-var ioHandlers = require('./socket/ioHandlers.js'); // Will export all functions from ioHandlers File
+  gameValidator(){
+    var roomCode = document.getElementById("roomCode").value;
+    switch (roomCode[0]) {
+      case 'c' :
+        break;
+      default:
 
-console.log(`Socket Server Running on ${process.env.PORT || 5000}!`);
+    }
+  }
 
-var game1 = io.of('/game1'); // Name Space of game1
-var game2 = io.of('/game2'); // Name Space of game2
-var game3 = io.of('/game3'); // Name Space of game3
+  buttonHandler(){
+    if(document.getElementById('roomCode').value[0] === 'c'){
+      console.log(`You Are playing Cards`);
+    }
+  }
 
-io.on('connection',(socket)=>{ // Generic "/" route which everyone hits first
+  componentDidMount(){
+    var card = document.getElementById('landingPageCard');
+    card.style.top = '10%';
+  }
 
-  // Logic for joining room
-  console.log("Connection Made")
-
-  socket.on('joinGame',(msg)=>{
-      if(msg === "game1"){
-
-      } else {
-
-      }
-  })
-  // Logic for starting room
-
-  socket.on('startGame',()=>{
-    console.log(msg);
-  })
-
-  // logic for leaving room
-
-});
-
-game1.on('connection',(socket)=>{ ioHandlers.gameHandler1(socket) })
-game2.on('connection',(socket)=>{ ioHandlers.gameHandler2(socket) })
-game3.on('connection',(socket)=>{ ioHandlers.gameHandler3(socket) })
+  render() {
+    return (
+        <div id="landingPageCard" className="card">
+          <div className="card-header text-center">
+            <img className='icon' src={ Icon }/>
+          </div>
+          <div className="card-body">
+            <h5 className="card-title">Enter Room Code</h5>
+            <input id='roomCode' maxLength="5" placeholder="Enter 5 Digit Room Code" className="full-width" onChange={this.gameValidator.bind(this)}/>
+            <h5 className="card-title">Nickname</h5>
+            <input type='text' maxLength="15" placeholder="Enter Nickname Limit 15 characters." className="full-width" />
+            <Button text="Play Game" func={ this.buttonHandler.bind(this) }/>
+          </div>
+          <b>Powered By <a href="http://ryanjohnson-engineer.com/">jTronix Developement</a></b>
+        </div>
+    );
+  }
+}
