@@ -32,7 +32,8 @@ const path = require('path');
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-server.listen(4000);
+
+server.listen(process.env.PORT || 5000);
 
 console.log(__dirname)
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
@@ -40,6 +41,7 @@ app.use(express.static(path.resolve(__dirname, '..', 'build')));
 app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html')));
 
 io.on('connection', function (socket) {
+  console.log("connection")
   socket.emit('news', { hello: 'world' });
   socket.on('my other event', function (data) {
     console.log(data);
