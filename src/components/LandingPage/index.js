@@ -47,7 +47,7 @@ export default class App extends Component {
           <div className="card-body">
             <h5 className="card-title">Enter Room Code</h5>
             <input id='roomCode' maxLength="5" placeholder="Enter 5 Digit Room Code" className="full-width" onChange={this.gameValidator.bind(this)}/>
-            <h5 className="card-title">Nickname</h5>
+            <h5 className="card-title">Nickname  fdsafdsaf</h5>
             <input type='text' maxLength="15" placeholder="Enter Nickname Limit 15 characters." className="full-width" />
             <Button text="Play Game" func={ this.buttonHandler.bind(this) }/>
           </div>
