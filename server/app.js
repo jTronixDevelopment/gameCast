@@ -1,19 +1,16 @@
+// server/app.js
 const express = require('express');
-const socketIO = require('socket.io');
+const morgan = require('morgan');
 const path = require('path');
+const app = express();
 
-const PORT = process.env.PORT || 3000;
-const INDEX = path.resolve(__dirname, '..', 'build', 'index.html')
+// Setup logger
+app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 
-const server = express()
-  .use((req, res) => res.sendFile(INDEX) )
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+// Serve static assets
+app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
-const io = socketIO(server);
+// Always return the main index.html, so react-router render the route in the client
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html')));
 
-io.on('connection', (socket) => {
-  console.log('Client connected');
-  socket.on('disconnect', () => console.log('Client disconnected'));
-});
-
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+module.exports = app;

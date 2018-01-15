@@ -25,8 +25,8 @@
 //
 //
 
-var app = require('express')();
 const express = require('express');
+var app = express();
 const path = require('path');
 
 var server = require('http').Server(app);
