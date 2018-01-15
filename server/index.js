@@ -31,7 +31,6 @@ const path = require('path');
 
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-ß
 
 server.listen(process.env.PORT || 5000);
 
