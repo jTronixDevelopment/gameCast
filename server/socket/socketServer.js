@@ -8,7 +8,7 @@ const io = require('socket.io')(server, {
   cookie: false
 });
 
-server.listen(4000);
+server.listen(9000);
 
 
 var ioHandlers = require('./ioHandlers.js'); // Will export all functions from ioHandlers File
