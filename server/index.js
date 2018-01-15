@@ -41,10 +41,14 @@ app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'build', '
 
 io.on('connection', function (socket) {
   console.log("connection")
-  socket.emit('news', { hello: 'world' });
+  setTimeout(function(){
+    socket.emit('news', { hello: 'world' });
+
+   }, 3000);
   socket.on('my other event', function (data) {
     console.log(data);
   });
+
 });
 
 

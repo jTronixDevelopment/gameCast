@@ -8,7 +8,7 @@ import Add from './../../imgs/add.png';
 
 import io from 'socket.io-client';
 
-var socket = io.connect(window.location.hostname);
+var socket = io.connect(window.location.hostname + process.env.PORT || 5000);
 
 export default class App extends Component {
   constructor(){
@@ -35,6 +35,10 @@ export default class App extends Component {
   componentDidMount(){
     var card = document.getElementById('landingPageCard');
     card.style.top = '10%';
+
+    socket.on("news",(msg)=>{
+      console.log(msg);
+    })
   }
 
   render() {
