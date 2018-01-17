@@ -3,10 +3,6 @@
   color: white;
 }
 
-.landing-page-x{
-
-}
-
 #title{
   width: inherit;
 }
@@ -25,14 +21,13 @@
 }
 
 input {
-  border:1px solid;
+  border: 1px solid;
   padding-left: 5px;
 }
 
 input:focus{
   padding: 5px;
   box-shadow: 0px 10px 3px 3px lightgrey;
-
 }
 
 div.add-module{
@@ -47,23 +42,4 @@ img.add-image{
 
 .icon{
   width: 50%;
-}
-
-/*button:active{
-  border-bottom-width: 4px;
-  transform:translateY(4px);
-}
-
-button{
-  border-bottom: 8px solid #bbb;
-  outline: 0;
-}*/
-
-button:hover{
-  transform:translateY(4px);
-  box-shadow: 0px 3px 0px 0px darkgrey;
-}
-
-button{
-  box-shadow: 0px 5px 3px 1px lightgrey;
 }

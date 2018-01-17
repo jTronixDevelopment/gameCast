@@ -10,18 +10,14 @@ export default class Test extends Component {
   constructor(){
     super();
     this.socket = io.connect('http://localhost:5000/game1');
-    console.log(this.socket)
   }
 
   buttonHandler(){
-    console.log()
     this.socket.emit(document.getElementById("emit").value)
   }
 
   selectHandler(){
-    console.log(document.getElementById('nsp').value)
     this.socket =io.connect('http://localhost:5000/' + document.getElementById('nsp').value);
-    console.log(this.socket);
   }
 
   render() {
