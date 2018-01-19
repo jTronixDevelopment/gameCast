@@ -6,6 +6,8 @@ import Button from './../components/button';
 import Icon from './../../imgs/Icon.png';
 // import Add from './../../imgs/add.png';
 
+import Input from './../components/input';
+
 import io from 'socket.io-client';
 
 let socket = io.connect(window.location.hostname + ":5000"); // Dev
@@ -48,7 +50,7 @@ export default class App extends Component {
           </div>
           <div className="card-body">
             <h5 className="lp-card-title">Enter Room Code</h5>
-            <input id='roomCode' maxLength="5" placeholder="Enter 5 digit Room Code" className="full-width" onChange={this.gameValidator.bind(this)}/>
+            <Input Id="roomCode" type="number" />
             <h5 className="card-title">Nickname</h5>
             <input type='text' maxLength="15" placeholder="Enter Nickname Limit 15 characters." className="full-width" />
             <Button text="Play Game" func={ this.buttonHandler.bind(this) }/>
