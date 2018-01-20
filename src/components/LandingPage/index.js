@@ -38,8 +38,6 @@ export default class App extends Component {
   }
 
   componentDidMount(){
-    var card = document.getElementById('landingPageCard');
-    card.style.top = '10%';
   }
 
   render() {
