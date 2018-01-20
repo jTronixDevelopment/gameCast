@@ -4,6 +4,7 @@ import './style.css';
 
 import Input from './../components/input';
 import Button from './../components/button';
+import Modal from './../components/modal';
 
 import Icon from './../../imgs/Icon.png';
 
@@ -32,12 +33,27 @@ export default class App extends Component {
   }
 
   startGameHandler(){
-    if(document.getElementById('roomCode').value[0] === 'c'){
-      console.log(`You Are playing Cards`);
+    if(this.allInputsValid()){
+      socket.emit("roomCode",{ roomCode : document.getElementById("roomCode").value })
+    } else {
+      this.showModal();
     }
   }
 
-  componentDidMount(){
+  allInputsValid(){
+    var inputs = document.getElementsByTagName('input');
+    inputs = Array.from(inputs).map((val)=>{return val.getAttribute('isValid')});
+    for(var i = 0;i<inputs.length;i++){
+      if(inputs[i] === 'false'){
+        console.log("in valid",inputs[i])
+        break;
+      }
+    }
+  }
+
+  showModal(){
+    var modal = document.getElementById('test');
+    modal.style.visibility = 'visible';
   }
 
   render() {
@@ -53,6 +69,7 @@ export default class App extends Component {
             <Input Id="nickName" type='text' len="15" placeHolder="Enter Nickname ( 15 characters)"/>
             <Button text="Play Game" func={ this.startGameHandler.bind(this) }/>
           </div>
+          <Modal id="test" />
           <b>Powered By <a href="#">jTronix Developement</a></b>
         </div>
     );

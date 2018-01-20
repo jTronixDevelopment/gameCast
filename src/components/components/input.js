@@ -12,6 +12,7 @@ export default class Input extends Component {
   componentDidMount(){
     this.state = { input : document.getElementById(this.props.Id) };
     this.state.input.addEventListener('keyup',this.checkForInputType());
+    this.state.input.setAttribute("isValid",false);
   }
 
   checkForInputType(){
