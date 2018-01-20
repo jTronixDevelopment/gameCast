@@ -39,11 +39,10 @@ export default class Input extends Component {
     var reg = RegExp('^[0-9]+$');
     if(!reg.test(this.state.input.value)){
       this.state.input.style.border = "2px solid red";
-      this.state.input.setAttribute("isValid",false)
+      this.state.input.setAttribute("isValid",false);
     } else{
       this.state.input.style.border = "1px solid black";
-      this.state.input.setAttribute("isValid",true)
-
+      this.state.input.setAttribute("isValid",true);
     }
   }
 
@@ -51,16 +50,16 @@ export default class Input extends Component {
     var reg = RegExp('^[a-z]+$');
     if(!reg.test(this.state.input.value)){
       this.state.input.style.border = "2px solid red";
-      this.state.input.setAttribute("isValid",false)
+      this.state.input.setAttribute("isValid",false);
     } else{
       this.state.input.style.border = "1px solid black";
-      this.state.input.setAttribute("isValid",true)
+      this.state.input.setAttribute("isValid",true);
     }
   }
 
   render() {
     return (
-      <input id={ this.props.Id } type={ "text" } className="full-width"/>
+      <input maxLength = { this.props.len } placeholder = { this.props.placeHolder } id={ this.props.Id } type={ this.props.type } className="full-width"/>
     );
   }
 }

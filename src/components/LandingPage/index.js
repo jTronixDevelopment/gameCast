@@ -19,22 +19,19 @@ export default class App extends Component {
     this.test='none';
   }
 
-  gameValidator(){
+  gameCodeValidator(){
     var roomCode = document.getElementById("roomCode").value;
     switch (roomCode[0]) {
       case 'c' :
         break;
       default:
-
     }
   }
 
-  buttonHandler(){
+  startGameHandler(){
     if(document.getElementById('roomCode').value[0] === 'c'){
       console.log(`You Are playing Cards`);
     }
-
-    socket.emit("test");
   }
 
   componentDidMount(){
@@ -50,10 +47,10 @@ export default class App extends Component {
           </div>
           <div className="card-body">
             <h5 className="lp-card-title">Enter Room Code</h5>
-            <Input Id="roomCode" type="number" />
+            <Input Id="roomCode" len ="5" type="text" placeHolder = "Enter Room Code"/>
             <h5 className="card-title">Nickname</h5>
-            <input type='text' maxLength="15" placeholder="Enter Nickname Limit 15 characters." className="full-width" />
-            <Button text="Play Game" func={ this.buttonHandler.bind(this) }/>
+            <Input Id="nickName" type='text' len="15" placeHolder="Enter Nickname ( 15 characters)" className="full-width" />
+            <Button text="Play Game" func={ this.startGameHandler.bind(this) }/>
           </div>
           <b>Powered By <a href="#">jTronix Developement</a></b>
         </div>
