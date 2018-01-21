@@ -1,20 +1,25 @@
 // File where the fuctions passed into the handler are found
-
+let validator = require('./helper.js'); // validates inputs
 // This function will handle initial connections
 var ioHandler = (socket)=>{
-  // Logic for joining room
-  console.log("Connection");
+  console.log("Connection Made")
+
   socket.on('joinGame',(msg)=>{
-      if(msg === "game1"){
+    validator(msg,'roomCode',(msg)=>{
+      console.log("Workings");
+    })
+  })
 
-      } else {
-
-      }
+  socket.on('test',()=>{
+    console.lg
+    socket.emit("test",{"msg":'Workin'})
   })
   // Logic for starting room
+
   socket.on('startGame',()=>{
     console.log(msg);
   })
+
 }
 
 var gameHandler1 = (socket)=>{
