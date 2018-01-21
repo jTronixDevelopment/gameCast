@@ -45,10 +45,11 @@ export default class App extends Component {
     inputs = Array.from(inputs).map((val)=>{return val.getAttribute('isValid')});
     for(var i = 0;i<inputs.length;i++){
       if(inputs[i] === 'false'){
-        console.log("in valid",inputs[i])
+        return false;
         break;
       }
     }
+    return true;
   }
 
   showModal(){
@@ -69,7 +70,7 @@ export default class App extends Component {
             <Input Id="nickName" type='text' len="15" placeHolder="Enter Nickname ( 15 characters)"/>
             <Button text="Play Game" func={ this.startGameHandler.bind(this) }/>
           </div>
-          <Modal id="test" />
+          <Modal id="test" msg="Invalid room code. Please Enter the correct room code." />
           <b>Powered By <a href="#">jTronix Developement</a></b>
         </div>
     );

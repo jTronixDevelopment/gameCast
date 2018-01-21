@@ -9,8 +9,7 @@ export default class Modal extends Component {
     super(props);
     this.defaultStyle = {
       zIndex : 10,
-      position:'relative',
-      top: "50%",
+      position:'fixed',
       width: '80vw',
       left:'10vw'
     }
@@ -20,7 +19,7 @@ export default class Modal extends Component {
       position:'absolute',
       top:'0',
       background:'rgba(105,105,105,0.5)',
-      visibility:'hidden'
+      visibility:'hidden',
     }
   }
 
@@ -29,13 +28,23 @@ export default class Modal extends Component {
     modal.style.visibility = 'hidden';
   }
 
+  centerModal(){
+    var modal = document.getElementById(this.props.id+"Modal");
+    modal.style.top = ((window.innerHeight - modal.offsetHeight)/2) + "px";
+  }
+
+  componentDidMount(){
+    this.centerModal();
+  }
+
   render() {
     return (
       <div id={ this.props.id } style ={ this.modal } >
-        <div style={ this.defaultStyle } className="card">
-          <div className="card-body">
-            Please Enter the correct info
-            <button className="btn btn-primary" text="Close" onClick={ this.dismissModal.bind(this) }>Close</button>
+        <div style={ this.defaultStyle } className="card" id={this.props.id + "Modal"}>
+          <div className="card-body center-text">
+              { this.props.msg }
+              <br/>
+            <button className="btn btn-primary" onClick={ this.dismissModal.bind(this) }>Close</button>
           </div>
         </div>
       </div>
