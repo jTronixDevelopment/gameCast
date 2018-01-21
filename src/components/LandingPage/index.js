@@ -65,9 +65,9 @@ export default class App extends Component {
           </div>
           <div className="card-body">
             <h5 className="lp-card-title">Enter Room Code</h5>
-            <Input Id="roomCode" len ="5" type="text" placeHolder = "Enter Room Code"/>
+            <Input Id="roomCode" len ="5" type="text" placeHolder="Enter Room Code"/>
             <h5 className="card-title">Nickname</h5>
-            <Input Id="nickName" type='text' len="15" placeHolder="Enter Nickname ( 15 characters)"/>
+            <Input Id="nickName" type='text' len="10" placeHolder="Enter Nickname ( 5-10 characters)"/>
             <Button text="Play Game" func={ this.startGameHandler.bind(this) }/>
           </div>
           <Modal id="test" msg="Invalid room code. Please Enter the correct room code." />
