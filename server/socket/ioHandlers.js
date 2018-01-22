@@ -32,7 +32,7 @@ var gameHandler2 = (socket)=>{
 }
 
 var gameHandler3 = (socket)=>{
-  console.log("Someone Joined Game3")
+  
 }
 
 module.exports = { gameHandler1 , gameHandler2, gameHandler3 , ioHandler };
