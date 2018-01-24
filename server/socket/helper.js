@@ -1,3 +1,13 @@
+// Handle
+
+/*
+  This need to handle the existacne of
+    - msg
+    - func
+    - val
+
+*/
+
 let validator = (msg, val, func) => {
   if (msg && (typeof msg === "object")) {
     if (val in msg) {

@@ -7,7 +7,7 @@ let io = require('socket.io')(server);
 server.listen(process.env.PORT || 5000); // For production
 
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
-app.get('*', (req, res) => { res.sendFile(path.resolve(__dirname,'..','build','index.html')));
+app.get('*', (req, res) => { res.sendFile(path.resolve(__dirname,'..','build','index.html')) });
 
 //==============================================================================
 //=== Socket IO ================================================================
