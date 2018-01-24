@@ -9,7 +9,6 @@ export default class Input extends Component {
 
   constructor(){
     super();
-    this.state = { state:"state" }
   }
 
   componentDidMount(){
@@ -29,8 +28,12 @@ export default class Input extends Component {
     }
   }
 
+  //============================================================================
+  //=== Number Validation ======================================================
+  //============================================================================
+
   numberValidator(){
-    var reg = RegExp('^[0-9]+$');
+    var reg = this.numberOnly();
     if(reg.test(this.state.input.value)){
       this.state.input.style.border = "1px solid black";
       this.state.input.setAttribute("isValid",true);
@@ -38,33 +41,52 @@ export default class Input extends Component {
       this.state.input.style.border = "2px solid red";
       this.state.input.setAttribute("isValid",false);
     }
-  }
-
-  textValidator(){
-    var reg = RegExp('/^[a-z\d\-_\s]+$/i');
-    if(reg.test(this.state.input.value)){
-      this.state.input.style.border = "1px solid black";
-      this.state.input.setAttribute("isValid",true);
-    } else{
-      this.state.input.style.border = "2px solid red";
-      this.state.input.setAttribute("isValid",false);
-    }
-  }
-
-  lowerCaseOnly(){
-    return RegExp('[a-z]+');
-  }
-
-  upperCaseOnly(){
-    return RegExp('[A-Z]+');
-  }
-
-  upperLowerCase(){
-    return RegExp('[a-zA-Z]+');
   }
 
   numberOnly(){
     return RegExp('[0-9]');
+  }
+
+  //============================================================================
+  //=== Text Validation ========================================================
+  //============================================================================
+
+  textValidator(){
+    var reg = this.upperLowerCase(); //RegExp('/^[a-z\d\-_\s]+$/i');
+    if(reg.test(this.state.input.value)){
+      this.state.input.style.border = "1px solid black";
+      this.state.input.setAttribute("isValid",true);
+    } else{
+      this.state.input.style.border = "2px solid red";
+      this.state.input.setAttribute("isValid",false);
+    }
+  }
+
+  getSubType(){
+    switch (this.props.subType) {
+      case 'upperLower':
+        return this.upperLowerCase();
+      case 'lower':
+        return this.lowerCaseOnly();
+      case 'upper':
+        return this.upperCaseOnly();
+      case 'alphaNumericSpace':
+        return this.alphaNumericAndSpace();
+      default:
+        return this.alphaNumericAndSpace();
+    }
+  }
+
+  lowerCaseOnly(){
+    return RegExp('^[a-z]+$');
+  }
+
+  upperCaseOnly(){
+    return RegExp('[A-Z]+$');
+  }
+
+  upperLowerCase(){
+    return RegExp('[a-zA-Z]+$');
   }
 
   alphaNumericAndSpace(){
