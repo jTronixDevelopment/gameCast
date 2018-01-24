@@ -1,30 +1,30 @@
 // File where the fuctions passed into the handler are found
 let validator = require('./helper.js'); // validates inputs
+let xss = require('xss');
+let gameManager = require('./gameManager');
+
 // This function will handle initial connections
 var ioHandler = (socket)=>{
-  console.log("Connection Made")
 
   socket.on('joinGame',(msg)=>{
-    validator(msg,'roomCode',(msg)=>{
-      console.log("Workings");
-    })
+    msg = xss(msg);
+  });
+
+  socket.on('createRoom',(msg)=>{
   })
 
-  socket.on('test',()=>{
-    console.lg
-    socket.emit("test",{"msg":'Workin'})
-  })
+  socket.on('test',(msg)=>{
+  });
   // Logic for starting room
 
-  socket.on('startGame',()=>{
-    console.log(msg);
+  socket.on('startGame',(msg)=>{
   })
 
 }
 
 var gameHandler1 = (socket)=>{
   console.log("Someone Joined Game1")
-  socket.on("test",()=>{ console.log("poop")})
+  socket.on('test',()=>{ console.log("poop")})
 }
 
 var gameHandler2 = (socket)=>{
@@ -32,7 +32,7 @@ var gameHandler2 = (socket)=>{
 }
 
 var gameHandler3 = (socket)=>{
-  
+
 }
 
 module.exports = { gameHandler1 , gameHandler2, gameHandler3 , ioHandler };
