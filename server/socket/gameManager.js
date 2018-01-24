@@ -1,9 +1,9 @@
 // This will be to manange all games and all rooms
-var codeGenerator = require("randomstring");
+let codeGenerator = require("randomstring");
 
 class GameManager{
   constructor(codeGenerator){
-    this.rooms = { room1 : "room1" };
+    this.rooms = { testRoom : room };
     this.codeGenerator = codeGenerator;
   }
 
@@ -15,7 +15,7 @@ class GameManager{
   }
 
   addNewRoom(){
-
+    
   }
 
   deleteRoom(){
@@ -24,6 +24,4 @@ class GameManager{
 
 }
 
-let gameManager = new GameManager(codeGenerator);
-
-module.exports = gameManager;
+module.exports = new GameManager(codeGenerator);

@@ -8,23 +8,16 @@ var ioHandler = (socket)=>{
 
   socket.on('joinGame',(msg)=>{
     msg = xss(msg);
-    validator(msg,'roomCode',(msg)=>{
-      console.log("Workings");
-    })
   });
 
   socket.on('createRoom',(msg)=>{
-    validator(msg,'gameType')
   })
 
-  socket.on('test',()=>{
-    console.lg
-    socket.emit('test',{ msg :'Workin'})
+  socket.on('test',(msg)=>{
   });
   // Logic for starting room
 
-  socket.on('startGame',()=>{
-    console.log(msg);
+  socket.on('startGame',(msg)=>{
   })
 
 }
