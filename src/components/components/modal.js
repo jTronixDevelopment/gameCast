@@ -39,7 +39,7 @@ export default class Modal extends Component {
 
   render() {
     return (
-      <div id={ this.props.id } style ={ this.modal } >
+      <div id={ this.props.id } style={ this.modal } >
         <div style={ this.defaultStyle } className="card" id={this.props.id + "Modal"}>
           <div className="card-body center-text">
               { this.props.msg }
