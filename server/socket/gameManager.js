@@ -3,7 +3,7 @@ let codeGenerator = require("randomstring");
 
 class GameManager{
   constructor(codeGenerator){
-    this.rooms = { testRoom : room };
+    this.rooms = { testRoom : "room" };
     this.codeGenerator = codeGenerator;
   }
 
@@ -15,7 +15,7 @@ class GameManager{
   }
 
   addNewRoom(){
-    
+
   }
 
   deleteRoom(){
