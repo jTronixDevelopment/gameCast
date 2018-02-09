@@ -12,7 +12,7 @@ var ioHandler = (socket)=>{
   });
 
   socket.on('createRoom',(msg)=>{
-
+    // TV
   })
 
   socket.on('test',(msg)=>{
@@ -20,7 +20,7 @@ var ioHandler = (socket)=>{
   });
 
   socket.on('roomCode',(msg)=>{
-
+    
   })
 
   socket.on('disconnect',()=>{
