@@ -1,0 +1,11 @@
+Game Manager Structure
+
+Structure One
+
+Each game will use the same game instance
+-ie)
+  - one Game will have one instance of the GameType Shared all users
+  -
+
+Structure Two
+Each game will have one game handler dedicated only to the type of game

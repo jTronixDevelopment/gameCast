@@ -10,10 +10,22 @@ import Icon from './../../imgs/Icon.png';
 
 import io from 'socket.io-client';
 
+
 let socket = io.connect(window.location.hostname + ":5000"); // Dev
 // var socket = io.connect(window.location.hostname);// Prod
 
 export default class App extends Component {
+
+  componentDidMount(){
+    socket.on('changeNSP',(msg)=>{
+      console.log(msg);
+      socket = io.connect(window.location.hostname + ':5000/' + msg);
+    })
+    socket.on('err',(err)=>{
+      throw err;
+    })
+  }
+
   gameCodeValidator(){
     var roomCode = document.getElementById("roomCode").value;
     switch (roomCode[0]) {
