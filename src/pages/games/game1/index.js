@@ -3,25 +3,21 @@ import React, { Component } from 'react';
 import './style.css';
 
 export default class App extends Component {
-
-  constructor(){
-    super();
-    this.currentRound = "test"
+  static defaultProps={
+    currentRound:"default"
   }
 
   componentDidMount(){
   }
 
-  gameCodeValidator(){
-  }
+  componentWillMount(){
 
-  allInputsValid(){
   }
 
   render() {
     return (
         <div className="meme-it-container">
-          { this.currentRound }
+          { this.props.currentRound }
         </div>
     );
   }

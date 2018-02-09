@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import './style.css';
 
-import Input from './../../components/input';
+import Input from './../../components/input/index';
 import Button from './../../components/button';
 import Modal from './../../components/modal';
 
