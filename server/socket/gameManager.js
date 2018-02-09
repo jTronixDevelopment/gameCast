@@ -5,18 +5,6 @@ let Game2 = require('./games/game2');
 
 class GameManager{
   constructor(codeGenerator){
-    this.rooms = {
-      'xxxxx' : {
-        users : [],
-        gameType : "game1",
-        gameInstance : {}
-      },
-      'aaaaaa' : {
-        users : [],
-        gameType : "game2",
-        gameInstance : {}
-      }
-     };
     this.codeGenerator = codeGenerator;
   }
 
@@ -25,14 +13,6 @@ class GameManager{
       charset : 'abcdefghijklmnopqrstuvwxyz',
       length : 5
     });
-  }
-
-  addNewRoom(gameObj){
-
-  }
-
-  deleteRoom(roomCode){
-
   }
 
   onJoinGame(roomCode){
