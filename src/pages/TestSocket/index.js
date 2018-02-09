@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './style.css';
 
 //components
-import Button from './../components/button';
+import Button from './../../components/button';
 import io from 'socket.io-client';
 
 export default class Test extends Component {

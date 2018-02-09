@@ -2,20 +2,28 @@
 import React, { Component } from 'react';
 import './style.css';
 
-import Input from './../components/input';
-import Button from './../components/button';
-import Modal from './../components/modal';
+import Input from './../../components/input';
+import Button from './../../components/button';
+import Modal from './../../components/modal';
 
 import Icon from './../../imgs/Icon.png';
 
 import io from 'socket.io-client';
 
+
 let socket = io.connect(window.location.hostname + ":5000"); // Dev
 // var socket = io.connect(window.location.hostname);// Prod
 
 export default class App extends Component {
-  constructor(){
-    super();
+
+  componentDidMount(){
+    socket.on('changeNSP',(msg)=>{
+      console.log(msg);
+      socket = io.connect(window.location.hostname + ':5000/' + msg);
+    })
+    socket.on('err',(err)=>{
+      throw err;
+    })
   }
 
   gameCodeValidator(){
@@ -46,7 +54,6 @@ export default class App extends Component {
     for(var i = 0;i<inputs.length;i++){
       if(inputs[i] === 'false'){
         return false;
-        break;
       }
     }
     return true;
@@ -65,7 +72,7 @@ export default class App extends Component {
           </div>
           <div className="card-body">
             <h5 className="lp-card-title">Enter Room Code</h5>
-            <Input Id="roomCode" len ="5" type="text" placeHolder="Enter Room Code"/>
+            <Input Id="roomCode" len="5" type="text" placeHolder="Enter Room Code"/>
             <h5 className="card-title">Nickname</h5>
             <Input Id="nickName" type='text' len="10" placeHolder="Enter Nickname ( 5-10 characters)"/>
             <Button text="Play Game" func={ this.startGameHandler.bind(this) }/>
