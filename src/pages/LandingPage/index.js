@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import './style.css';
 
-import Input from './../components/input';
-import Button from './../components/button';
-import Modal from './../components/modal';
+import Input from './../../components/input';
+import Button from './../../components/button';
+import Modal from './../../components/modal';
 
 import Icon from './../../imgs/Icon.png';
 
