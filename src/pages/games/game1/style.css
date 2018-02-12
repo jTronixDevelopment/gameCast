@@ -10,3 +10,9 @@ div.meme-it-container{
   height: 100vh;
   background: lightgrey;
 }
+
+
+img.background-logo{
+  width:100vw;
+  background: white;
+}
