@@ -23,7 +23,7 @@ class GameManager{
   }
 
   hasRoom(room){
-    
+
   }
 
 }

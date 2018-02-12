@@ -8,24 +8,25 @@ var TAG = 'ioHandlers';
 var ioHandler = (socket)=>{
 
   socket.on('joinGame',(msg)=>{
-    msg = xss(msg);
-  // For some reason here the 'msg' parameter passed in
-  // is '[object Object]' which i assume means
-  // it doesnt have a value
-    if(helper.isValidRoomCode(msg)){
+    // msg = xss(msg);
 
-
-      // console.log(TAG + ' isValidRoomCode: true');
-      // 1. Check for code in gameManager rooms object
-      // 2. Then
-
-    }else{
-      // room does not exist, ask for another code
-    }
   });
 
-  // socket.on('createRoom',(msg)=>{
-  // })
+  socket.on('roomCode',(msg)=>{
+    // For some reason here the 'msg' parameter passed in
+    // is '[object Object]' which i assume means
+    // it doesnt have a value
+      if(helper.isValidRoomCode(msg)){
+
+
+        // console.log(TAG + ' isValidRoomCode: true');
+        // 1. Check for code in gameManager rooms object
+        // 2. Then
+
+      }else{
+        // room does not exist, ask for another code
+      };
+  })
 
   // socket.on('test',(msg)=>{
   // });
