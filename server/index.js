@@ -7,8 +7,17 @@ let io = require('socket.io')(server);
 server.listen(process.env.PORT || 5000); // For production
 
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
-app.get('*', (req, res) => { res.sendFile(path.resolve(__dirname,'..','build','index.html')) });
 
+//==============================================================================
+//=== TVML =====================================================================
+//==============================================================================
+console.log(__dirname)
+app.get('/application.js',(req, res)=>{res.sendFile(path.resolve(__dirname,'TVML/game1/application.js'))});
+app.get('/Views/mainView.xml',(req, res)=>{res.sendFile(path.resolve(__dirname,'TVML/game1/Views/mainView.xml'))});
+// app.get('/application.js',(req, res)=>{res.sendFile(path.resolve(__dirname,'TVML/game1/application.js'))});
+
+
+app.get('*', (req, res) => { res.sendFile(path.resolve(__dirname,'..','build','index.html')) });
 //==============================================================================
 //=== Socket IO ================================================================
 //==============================================================================
