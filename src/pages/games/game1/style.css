@@ -8,5 +8,11 @@
 div.meme-it-container{
   width: 100vw;
   height: 100vh;
-  background: darkgrey;
+  background: lightgrey;
+}
+
+
+img.background-logo{
+  width:100vw;
+  background: white;
 }

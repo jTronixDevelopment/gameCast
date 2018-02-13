@@ -2,19 +2,16 @@
 import React, { Component } from 'react';
 // This class checks if inputs are validator
 // This allso sets a attribute isValid to true or false that can be used
-
+import './style.css';
 // This needs to be changed
 
 export default class Input extends Component {
-
-  constructor(){
-    super();
-  }
+  //Set state manually
 
   componentDidMount(){
-    this.state = { input : document.getElementById(this.props.Id) };
-    this.state.input.addEventListener('keyup',this.checkForInputType());
-    this.state.input.setAttribute("isValid",false);
+    this.props = { input : document.getElementById(this.props.Id) };
+    this.props.input.addEventListener('keyup',this.checkForInputType());
+    this.props.input.setAttribute("isValid",false);
   }
 
   checkForInputType(){
@@ -35,11 +32,11 @@ export default class Input extends Component {
   numberValidator(){
     var reg = this.numberOnly();
     if(reg.test(this.state.input.value)){
-      this.state.input.style.border = "1px solid black";
-      this.state.input.setAttribute("isValid",true);
+      this.props.input.style.border = "1px solid black";
+      this.props.input.setAttribute("isValid",true);
     } else{
-      this.state.input.style.border = "2px solid red";
-      this.state.input.setAttribute("isValid",false);
+      this.props.input.style.border = "2px solid red";
+      this.props.input.setAttribute("isValid",false);
     }
   }
 
@@ -52,13 +49,13 @@ export default class Input extends Component {
   //============================================================================
 
   textValidator(){
-    var reg = this.upperLowerCase(); //RegExp('/^[a-z\d\-_\s]+$/i');
+    var reg = this.upperLowerCase();
     if(reg.test(this.state.input.value)){
-      this.state.input.style.border = "1px solid black";
-      this.state.input.setAttribute("isValid",true);
+      this.props.input.style.border = "1px solid black";
+      this.props.input.setAttribute("isValid",true);
     } else{
-      this.state.input.style.border = "2px solid red";
-      this.state.input.setAttribute("isValid",false);
+      this.props.input.style.border = "2px solid red";
+      this.props.input.setAttribute("isValid",false);
     }
   }
 

@@ -2,26 +2,33 @@
 import React, { Component } from 'react';
 import './style.css';
 
-export default class App extends Component {
+import Logo from './../../../imgs/Icon.png'
 
-  constructor(){
-    super();
-    this.currentRound = "test"
+import Round1 from './round1/index';
+import Round2 from './round2/index';
+import Round3 from './round3/index';
+import FinalRound from './finalround/index';
+
+export default class App extends Component {
+  static defaultProps={
   }
+  state = { currentRound: <Round1/> }
 
   componentDidMount(){
+
+    setTimeout(()=>{
+      this.setState({ currentRound: <Round2/> })
+    },3000)
   }
 
-  gameCodeValidator(){
-  }
-
-  allInputsValid(){
+  componentWillMount(){
   }
 
   render() {
     return (
         <div className="meme-it-container">
-          { this.currentRound }
+          <img className='background-logo' src={ Logo }/>
+          { this.state.currentRound }
         </div>
     );
   }
