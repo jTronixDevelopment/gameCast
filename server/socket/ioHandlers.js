@@ -17,7 +17,7 @@ var ioHandler = (socket)=>{
     // is '[object Object]' which i assume means
     // it doesnt have a value
       if(helper.isValidRoomCode(msg)){
-
+        
 
         // console.log(TAG + ' isValidRoomCode: true');
         // 1. Check for code in gameManager rooms object

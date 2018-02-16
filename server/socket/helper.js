@@ -24,9 +24,9 @@ exports.isValidRoomCode=(roomCode)=>{
   // Use once the first digit roomcode prefixes are determined
   // var regex= '^('A'|roomCode2|roomCode3)[A-Z]{4}$';
 
-//
-  //  For now matches all Uppercase letter string of 5 chars
-  var regex='^[A-Z]{5}$';
+  //  For now matches all Uppercase letter string
+  // of 6 chars (1 game specific char + 5 room specific chars)
+  var regex='^[A-Z]{6}$';
 
   if(roomCode.match(regex)){
     console.log('isValidRoomCode: true');

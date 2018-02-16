@@ -10,7 +10,7 @@ import Icon from './../../imgs/Icon.png';
 
 import io from 'socket.io-client';
 
-import help from './../../../server/socket/helper';
+import help from './helper.js';
 
 let socket = io.connect(window.location.hostname + ":5000"); // Dev
  // var socket = io.connect(window.location.hostname);// Prod
@@ -21,22 +21,7 @@ export default class App extends Component {
   }
 
   gameCodeValidator(){
-    var roomCode = document.getElementById("roomCode").value;
-    switch (roomCode[0]) {
-      case 'x' :
-      // connect client to namespace for game1
-        break;
 
-      case 'y' :
-      // connect client to namespace for game2
-        break;
-
-      case 'z' :
-      // connect client to namespace for game3
-        break;
-      default:
-        break;
-    }
   }
 
   createGameHandler(){
@@ -50,13 +35,23 @@ export default class App extends Component {
   }
 
   joinGameHandler(){
-    if(this.allInputsValid()){
-       // socket.emit("roomCode",{ roomCode : document.getElementById("roomCode").value })
+    // console.log('joinGameHandler() requesting roomcode: 'document.getElementById("roomCode").value);
+    var rc = document.getElementById("roomCode").value;
 
-      socket.emit('joinGame',{ roomCode : document.getElementById("roomCode").value });
-    } else {
+    if(this.allInputsValid && help.isValidRoomCode(rc)){
+      console.log(rc + ' validRoomCode');
+      socket.emit('roomCode', {roomCode: rc});
+    }
+    else{
       this.showModal();
     }
+    // if(this.allInputsValid()){
+       // socket.emit("roomCode",{ roomCode : document.getElementById("roomCode").value })
+
+    //   socket.emit('joinGame',{ roomCode : document.getElementById("roomCode").value });
+    // } else {
+    //   this.showModal();
+    // }
   }
 
 
@@ -86,7 +81,7 @@ export default class App extends Component {
           </div>
           <div className="card-body">
             <h5 className="lp-card-title">Enter Room Code</h5>
-            <Input Id="roomCode" len="5" type="text" placeHolder="Enter Room Code"/>
+            <Input Id="roomCode" len="6" type="text" placeHolder="Enter Room Code"/>
             <h5 className="card-title">Nickname</h5>
             <Input Id="nickName" type='text' len="10" placeHolder="Enter Nickname ( 5-10 characters)"/>
             <Button text="Join Game" func={ this.joinGameHandler.bind(this) }/>
