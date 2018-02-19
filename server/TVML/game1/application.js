@@ -34,10 +34,6 @@
 var viewPath = 'http://localhost:5000/Views/';
 
 App.onLaunch = function(options) {
-    var io = require('socket.io-client');
-    console.log("in")
-    // var socket = io.connect('http://localhost:5000')
-    // socket.emit("test")
     baseURL = options.BASEURL;
     var templateURL = viewPath + "mainView.xml";
     getDocument(templateURL);

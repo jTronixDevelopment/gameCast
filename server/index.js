@@ -12,7 +12,10 @@ app.use(express.static(path.resolve(__dirname, '..', 'build')));
 //=== TVML =====================================================================
 //==============================================================================
 console.log(__dirname)
-app.get('/application.js',(req, res)=>{res.sendFile(path.resolve(__dirname,'TVML/game1/application.js'))});
+app.get('/application.js',(req, res)=>{
+  console.log("getting Application")
+  res.sendFile(path.resolve(__dirname,'TVML/game1/application.js'))
+});
 app.get('/Views/mainView.xml',(req, res)=>{res.sendFile(path.resolve(__dirname,'TVML/game1/Views/mainView.xml'))});
 // app.get('/application.js',(req, res)=>{res.sendFile(path.resolve(__dirname,'TVML/game1/application.js'))});
 

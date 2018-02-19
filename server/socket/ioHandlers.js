@@ -7,6 +7,7 @@ let gameManager = require('./gameManager');
 
 var ioHandler = (socket)=>{
   let io = socket.nsp.server.nsps['/'];
+  console.log("Connected")
   socket.on('joinGame',(msg)=>{
 
   });
@@ -20,7 +21,7 @@ var ioHandler = (socket)=>{
   });
 
   socket.on('roomCode',(msg)=>{
-    
+
   })
 
   socket.on('disconnect',()=>{
