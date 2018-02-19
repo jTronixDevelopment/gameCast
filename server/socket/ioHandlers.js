@@ -22,13 +22,10 @@ var ioHandler = (socket)=>{
   });
 
   socket.on('roomCode',(msg)=>{
-<<<<<<< HEAD
-=======
 
   })
 
   socket.on('disconnect',()=>{
->>>>>>> TVML-Backend
 
   })
 
