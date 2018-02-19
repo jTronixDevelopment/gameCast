@@ -10,7 +10,7 @@ import Icon from './../../imgs/Icon.png';
 
 import io from 'socket.io-client';
 
-import help from './helper.js';
+import help from './../../components/LandingPage/helper.js';
 
 let socket = io.connect(window.location.hostname + ":5000"); // Dev
  // var socket = io.connect(window.location.hostname);// Prod
@@ -75,7 +75,7 @@ export default class App extends Component {
     return (
         <div id="landingPageCard" className="card">
           <div className="card-header text-center">
-            <img alt="Icon" className='icon' sroomCode={ Icon }/>
+            <img alt="Icon" className='icon' src={ Icon }/>
           </div>
           <div className="card-body">
             <h5 className="lp-card-title">Enter Room Code</h5>

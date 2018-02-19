@@ -9,7 +9,7 @@ var TAG = 'ioHandlers';
 var ioHandler = (socket)=>{
   let io = socket.nsp.server.nsps['/'];
   socket.on('joinGame',(msg)=>{
-
+    console.log(msg)
   });
 
   socket.on('createRoom',(msg)=>{
@@ -26,13 +26,6 @@ var ioHandler = (socket)=>{
 
   socket.on('disconnect',()=>{
 
-  })
-
-  // Logic for starting room
-
-      }else{
-        // room does not exist, ask for another code
-      };
   })
 }
 
