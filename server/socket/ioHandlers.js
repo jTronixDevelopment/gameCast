@@ -8,6 +8,7 @@ var TAG = 'ioHandlers';
 
 var ioHandler = (socket)=>{
   let io = socket.nsp.server.nsps['/'];
+  console.log("Connected")
   socket.on('joinGame',(msg)=>{
     console.log(msg)
   });
@@ -21,6 +22,13 @@ var ioHandler = (socket)=>{
   });
 
   socket.on('roomCode',(msg)=>{
+<<<<<<< HEAD
+=======
+
+  })
+
+  socket.on('disconnect',()=>{
+>>>>>>> TVML-Backend
 
   })
 
