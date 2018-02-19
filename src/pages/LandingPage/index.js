@@ -1,4 +1,4 @@
-// src/components/App/index.js
+// sroomCode/components/App/index.js
 import React, { Component } from 'react';
 import './style.css';
 
@@ -10,10 +10,10 @@ import Icon from './../../imgs/Icon.png';
 
 import io from 'socket.io-client';
 
-<<<<<<< HEAD:src/pages/LandingPage/index.js
+<<<<<<< HEAD:sroomCode/pages/LandingPage/index.js
 =======
 import help from './helper.js';
->>>>>>> Branch3:src/components/LandingPage/index.js
+>>>>>>> Branch3:sroomCode/components/LandingPage/index.js
 
 let socket = io.connect(window.location.hostname + ":5000"); // Dev
  // var socket = io.connect(window.location.hostname);// Prod
@@ -45,23 +45,15 @@ export default class App extends Component {
   }
 
   joinGameHandler(){
-    // console.log('joinGameHandler() requesting roomcode: 'document.getElementById("roomCode").value);
-    var rc = document.getElementById("roomCode").value;
+    var roomCode = document.getElementById("roomCode").value;
 
-    if(this.allInputsValid && help.isValidRoomCode(rc)){
-      console.log(rc + ' validRoomCode');
-      socket.emit('roomCode', {roomCode: rc});
+    if(this.allInputsValid && help.isValidRoomCode(roomCode)){
+      console.log(roomCode + ' validRoomCode');
+      socket.emit('roomCode', {roomCode: roomCode});
     }
     else{
       this.showModal();
     }
-    // if(this.allInputsValid()){
-       // socket.emit("roomCode",{ roomCode : document.getElementById("roomCode").value })
-
-    //   socket.emit('joinGame',{ roomCode : document.getElementById("roomCode").value });
-    // } else {
-    //   this.showModal();
-    // }
   }
 
 
@@ -86,15 +78,11 @@ export default class App extends Component {
     return (
         <div id="landingPageCard" className="card">
           <div className="card-header text-center">
-            <img alt="Icon" className='icon' src={ Icon }/>
+            <img alt="Icon" className='icon' sroomCode={ Icon }/>
           </div>
           <div className="card-body">
             <h5 className="lp-card-title">Enter Room Code</h5>
-<<<<<<< HEAD:src/pages/LandingPage/index.js
-            <Input Id="roomCode" len="5" type="text" placeHolder="Enter Room Code"/>
-=======
             <Input Id="roomCode" len="6" type="text" placeHolder="Enter Room Code"/>
->>>>>>> Branch3:src/components/LandingPage/index.js
             <h5 className="card-title">Nickname</h5>
             <Input Id="nickName" type='text' len="10" placeHolder="Enter Nickname ( 5-10 characters)"/>
             <Button text="Join Game" func={ this.joinGameHandler.bind(this) }/>
