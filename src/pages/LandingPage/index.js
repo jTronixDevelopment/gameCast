@@ -10,10 +10,7 @@ import Icon from './../../imgs/Icon.png';
 
 import io from 'socket.io-client';
 
-<<<<<<< HEAD:sroomCode/pages/LandingPage/index.js
-=======
 import help from './helper.js';
->>>>>>> Branch3:sroomCode/components/LandingPage/index.js
 
 let socket = io.connect(window.location.hostname + ":5000"); // Dev
  // var socket = io.connect(window.location.hostname);// Prod
