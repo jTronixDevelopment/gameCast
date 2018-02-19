@@ -37,5 +37,20 @@
     "rules": {
       "strict": 0
     }
-  }
+  },
+  "description": "## Development",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jTronixDevelopment/projectX.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jTronixDevelopment/projectX/issues"
+  },
+  "homepage": "https://github.com/jTronixDevelopment/projectX#readme"
 }

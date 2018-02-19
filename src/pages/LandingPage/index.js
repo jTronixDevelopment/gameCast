@@ -10,9 +10,13 @@ import Icon from './../../imgs/Icon.png';
 
 import io from 'socket.io-client';
 
+<<<<<<< HEAD:src/pages/LandingPage/index.js
+=======
+import help from './helper.js';
+>>>>>>> Branch3:src/components/LandingPage/index.js
 
 let socket = io.connect(window.location.hostname + ":5000"); // Dev
-// var socket = io.connect(window.location.hostname);// Prod
+ // var socket = io.connect(window.location.hostname);// Prod
 
 export default class App extends Component {
 
@@ -27,26 +31,40 @@ export default class App extends Component {
   }
 
   gameCodeValidator(){
-    var roomCode = document.getElementById("roomCode").value;
-    switch (roomCode[0]) {
-      case 'x' :
-        break;
-      case 'y' :
-        break;
-      case 'z' :
-        break;
-      default:
-        break;
-    }
+
   }
 
-  startGameHandler(){
+  createGameHandler(){
     if(this.allInputsValid()){
-      socket.emit("roomCode",{ roomCode : document.getElementById("roomCode").value })
+       // socket.emit("roomCode",{ roomCode : document.getElementById("roomCode").value })
+       console.log('createGameHandler');
+      socket.emit('createGame', { roomCode: document.getElementById("roomCode").value });
     } else {
       this.showModal();
     }
   }
+
+  joinGameHandler(){
+    // console.log('joinGameHandler() requesting roomcode: 'document.getElementById("roomCode").value);
+    var rc = document.getElementById("roomCode").value;
+
+    if(this.allInputsValid && help.isValidRoomCode(rc)){
+      console.log(rc + ' validRoomCode');
+      socket.emit('roomCode', {roomCode: rc});
+    }
+    else{
+      this.showModal();
+    }
+    // if(this.allInputsValid()){
+       // socket.emit("roomCode",{ roomCode : document.getElementById("roomCode").value })
+
+    //   socket.emit('joinGame',{ roomCode : document.getElementById("roomCode").value });
+    // } else {
+    //   this.showModal();
+    // }
+  }
+
+
 
   allInputsValid(){
     var inputs = document.getElementsByTagName('input');
@@ -72,10 +90,15 @@ export default class App extends Component {
           </div>
           <div className="card-body">
             <h5 className="lp-card-title">Enter Room Code</h5>
+<<<<<<< HEAD:src/pages/LandingPage/index.js
             <Input Id="roomCode" len="5" type="text" placeHolder="Enter Room Code"/>
+=======
+            <Input Id="roomCode" len="6" type="text" placeHolder="Enter Room Code"/>
+>>>>>>> Branch3:src/components/LandingPage/index.js
             <h5 className="card-title">Nickname</h5>
             <Input Id="nickName" type='text' len="10" placeHolder="Enter Nickname ( 5-10 characters)"/>
-            <Button text="Play Game" func={ this.startGameHandler.bind(this) }/>
+            <Button text="Join Game" func={ this.joinGameHandler.bind(this) }/>
+            <Button text="Start New Game" func={ this.createGameHandler.bind(this) }/>
           </div>
           <Modal id="test" msg="Invalid room code. Please Enter the correct room code." />
           <b>Powered By <a href="#">jTronix Developement</a></b>

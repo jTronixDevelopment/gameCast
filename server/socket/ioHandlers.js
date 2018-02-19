@@ -1,8 +1,9 @@
 // File where the fuctions passed into the handler are found
-let validator = require('./helper.js'); // validates inputs
+let helper = require('./helper.js'); // validates inputs
 let xss = require('xss');
 let gameManager = require('./gameManager');
 
+var TAG = 'ioHandlers';
 // This function will handle initial connections
 
 var ioHandler = (socket)=>{
@@ -20,7 +21,7 @@ var ioHandler = (socket)=>{
   });
 
   socket.on('roomCode',(msg)=>{
-    
+
   })
 
   socket.on('disconnect',()=>{
@@ -29,7 +30,9 @@ var ioHandler = (socket)=>{
 
   // Logic for starting room
 
-  socket.on('startGame',(msg)=>{
+      }else{
+        // room does not exist, ask for another code
+      };
   })
 }
 

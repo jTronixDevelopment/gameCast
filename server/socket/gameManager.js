@@ -17,6 +17,17 @@ class GameManager{
 
   onJoinGame(roomCode){
 
+}
+  addNewRoom(room){
+
+  }
+
+  deleteRoom(room){
+
+  }
+
+  hasRoom(room){
+
   }
 
 }
