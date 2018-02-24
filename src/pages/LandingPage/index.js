@@ -6,6 +6,8 @@ import Input from './../../components/input/index';
 import Button from './../../components/button';
 import Modal from './../../components/modal';
 
+import { Jumbotron, Container } from 'reactstrap';
+
 import Icon from './../../imgs/Icon.png';
 
 import io from 'socket.io-client';
@@ -74,9 +76,9 @@ export default class App extends Component {
   render() {
     return (
         <div id="landingPageCard" className="card">
-          <div className="card-header text-center">
+          <Jumbotron className="card-header text-center">
             <img alt="Icon" className='icon' src={ Icon }/>
-          </div>
+          </Jumbotron>
           <div className="card-body">
             <h5 className="lp-card-title">Enter Room Code</h5>
             <Input Id="roomCode" len="6" type="text" placeHolder="Enter Room Code"/>
