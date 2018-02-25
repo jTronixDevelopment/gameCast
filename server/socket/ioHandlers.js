@@ -18,7 +18,7 @@ var ioHandler = (socket)=>{
   })
 
   socket.on('test',(msg)=>{
-
+    console.log("testing")
   });
 
   socket.on('roomCode',(msg)=>{
@@ -26,7 +26,6 @@ var ioHandler = (socket)=>{
   })
 
   socket.on('disconnect',()=>{
-
   })
 
   socket.on('disconnect',()=>{
@@ -38,6 +37,16 @@ var gameHandler1 = (socket)=>{
   let io = socket.nsp.server.nsps['/game1'];
   console.log("Someone Joined Game1");
   socket.on('test',()=>{ console.log("poop")});
+
+  socket.on('getRoomCode',()=>{
+    console.log('Getting Game Code')
+    let roomCode = gameManager.getUniqueCode();
+    gameManager.addNewRoom(roomCode,'game1')
+    socket.emit("getRoomCode",{ "roomCode" : gameManager.getUniqueCode() })
+  })
+
+
+
 }
 
 var gameHandler2 = (socket)=>{
