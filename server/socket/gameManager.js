@@ -3,10 +3,25 @@ let codeGenerator = require("randomstring");
 let Game1 = require('./games/game1');
 let Game2 = require('./games/game2');
 let TAG = 'Game Manager'
+
 class GameManager{
   constructor(codeGenerator){
+    this.rooms = {
+      'XXXXXX' : {
+        users : [],
+        gameType : "game1",
+        gameInstance : {}
+      },
+      'AAAAAA' : {
+        users : [],
+        gameType : "game2",
+        gameInstance : {}
+      }
+    };
+    for(var i =0; i<rooms.length;i++)
+      console.log(this.rooms[i]);
+
     this.codeGenerator = codeGenerator;
-    this.rooms = {};
   }
 
   getUniqueCode(){
