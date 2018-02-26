@@ -28,7 +28,7 @@ exports.isValidRoomCode=(roomCode)=>{
   // of 6 chars (1 game specific char + 5 room specific chars)
   var regex='^[A-Z]{6}$';
 
-  if(roomCode.match(regex)){
+  if(String(roomCode).match(regex)){
     console.log('isValidRoomCode: true');
     return true;
   }
