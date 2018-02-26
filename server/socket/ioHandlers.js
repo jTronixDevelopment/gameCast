@@ -5,11 +5,20 @@ let gameManager = require('./gameManager');
 
 var TAG = 'ioHandlers';
 // This function will handle initial connections
+
 var ioHandler = (socket)=>{
-
+  let io = socket.nsp.server.nsps['/'];
+  console.log("Connected")
   socket.on('joinGame',(msg)=>{
-    // msg = xss(msg);
+    console.log(msg)
+  });
 
+  socket.on('createRoom',(msg)=>{
+    // TV
+  })
+
+  socket.on('test',(msg)=>{
+    console.log("testing")
   });
 
   socket.on('roomCode',(msg)=>{
@@ -26,30 +35,42 @@ var ioHandler = (socket)=>{
       }else{
         // room does not exist, ask for another code
       };
+
+
   })
 
-  // socket.on('test',(msg)=>{
-  // });
+  socket.on('disconnect',()=>{
+  })
 
-  // Logic for starting room
-  socket.on('createGame',(msg)=>{
-    console.log(TAG+': createGame');
+  socket.on('disconnect',()=>{
 
-  });
+  })
 }
 
 var gameHandler1 = (socket)=>{
-  console.log("Someone Joined Game1")
-  socket.on('test',()=>{ console.log("poop")})
+  let io = socket.nsp.server.nsps['/game1'];
+  console.log("Someone Joined Game1");
+  socket.on('test',()=>{ console.log("poop")});
+
+  socket.on('getRoomCode',()=>{
+    console.log('Getting Game Code')
+    let roomCode = gameManager.getUniqueCode();
+    gameManager.addNewRoom(roomCode,'game1')
+    socket.emit("getRoomCode",{ "roomCode" : gameManager.getUniqueCode() })
+  })
+
+
 
 }
 
 var gameHandler2 = (socket)=>{
-  console.log("Someone Joined Game2")
+  let io = socket.nsp.server.nsps['/game2'];
+  console.log("Someone Joined Game2");
 }
 
 var gameHandler3 = (socket)=>{
-
+  let io = socket.nsp.server.nsps['/game3'];
+  console.log("Someone Joined Game3");
 }
 
 module.exports = { gameHandler1 , gameHandler2, gameHandler3 , ioHandler };
