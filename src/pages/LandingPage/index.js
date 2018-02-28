@@ -48,7 +48,7 @@ export default class App extends Component {
 
     if(this.allInputsValid && help.isValidRoomCode(roomCode)){
       console.log(roomCode + ' validRoomCode');
-      socket.emit('roomCode', {roomCode: roomCode});
+      socket.emit('joinGame', {roomCode: roomCode});
     }
     else{
       this.showModal();
