@@ -47,10 +47,54 @@ var ioHandler = (socket)=>{
   })
 }
 
+//==============================================================================
+//=== Socket Manger logic ======================================================
+//==============================================================================
+
+function socketManager(msgObject){
+  // This function will route req to the appropriate handler
+  // check if object exsist
+  if (msgObject.endPoint) {
+    switch (msge.endPoint) {
+      case "server":
+        serverSocketHandler(msgObject);
+        break;
+      case "client":
+        clientSocketHandler(msgObject);
+        break;
+      case "tv":
+        tvSocketHandler(msgObject);
+        break;
+      default:
+    }
+  } else {
+    throw "msgObject.endPoint DNE"
+    socket.emit('err','msgObject.endPoint DNE')
+  }
+}
+
+function serverSocketHandler(msgObject){
+  console.log(msgObject)
+}
+
+function clientSocketHandler(msgObject){
+  console.log(msgObject)
+}
+
+function tvSocketHandler(msgObject){
+  console.log(msgObject)
+}
+
+//==============================================================================
+//=== MemeIt ===================================================================
+//==============================================================================
+
 var gameHandler1 = (socket)=>{
   let io = socket.nsp.server.nsps['/game1'];
   console.log("Someone Joined Game1");
   socket.on('test',()=>{ console.log("poop")});
+
+  // only for TV to execute
 
   socket.on('getRoomCode',()=>{
     console.log('Getting Game Code')
@@ -59,14 +103,26 @@ var gameHandler1 = (socket)=>{
     socket.emit("getRoomCode",{ "roomCode" : gameManager.getUniqueCode() })
   })
 
+  //=== Socket Manager =========================================================
 
+  socket.emit("msgRec",(msg)=>{
+    socketManager(msg);
+  });
 
 }
+
+//==============================================================================
+//=== Game 2 ===================================================================
+//==============================================================================
 
 var gameHandler2 = (socket)=>{
   let io = socket.nsp.server.nsps['/game2'];
   console.log("Someone Joined Game2");
 }
+
+//==============================================================================
+//=== Game 3 ===================================================================
+//==============================================================================
 
 var gameHandler3 = (socket)=>{
   let io = socket.nsp.server.nsps['/game3'];
