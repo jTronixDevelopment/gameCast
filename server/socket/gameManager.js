@@ -18,7 +18,7 @@ class GameManager{
         gameInstance : {}
       }
     };
-    for(var i =0; i<rooms.length;i++)
+    for(var i =0; i< this.rooms.length;i++)
       console.log(this.rooms[i]);
 
     this.codeGenerator = codeGenerator;
