@@ -8,7 +8,8 @@ var TAG = 'ioHandlers';
 
 var ioHandler = (socket)=>{
   let io = socket.nsp.server.nsps['/'];
-  console.log("Connected")
+  console.log("Connected to Main Server");
+
   socket.on('joinGame',(msg)=>{
     console.log(msg)
   });
@@ -55,7 +56,7 @@ function socketManager(msgObject){
   // This function will route req to the appropriate handler
   // check if object exsist
   if (msgObject.endPoint) {
-    switch (msge.endPoint) {
+    switch (msgObject.endPoint) {
       case "server":
         serverSocketHandler(msgObject);
         break;
@@ -74,15 +75,15 @@ function socketManager(msgObject){
 }
 
 function serverSocketHandler(msgObject){
-  console.log(msgObject)
+  console.log("MSG for Server :",msgObject)
 }
 
 function clientSocketHandler(msgObject){
-  console.log(msgObject)
+  console.log("MSG for client",msgObject)
 }
 
 function tvSocketHandler(msgObject){
-  console.log(msgObject)
+  console.log("MSG for TV",msgObject)
 }
 
 //==============================================================================
@@ -105,7 +106,7 @@ var gameHandler1 = (socket)=>{
 
   //=== Socket Manager =========================================================
 
-  socket.emit("msgRec",(msg)=>{
+  socket.on("msgRec",(msg)=>{
     socketManager(msg);
   });
 

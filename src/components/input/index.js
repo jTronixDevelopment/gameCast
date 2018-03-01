@@ -87,7 +87,7 @@ export default class Input extends Component {
   }
 
   alphaNumericAndSpace(){
-    return RegExp('/^[a-zd-_s]+$/i');
+    // return RegExp('/^[a-zd-_s]+$/i');
   }
 
   render() {

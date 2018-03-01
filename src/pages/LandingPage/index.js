@@ -6,7 +6,7 @@ import Input from './../../components/input/index';
 import Button from './../../components/button';
 import Modal from './../../components/modal';
 
-import { Jumbotron, Container } from 'reactstrap';
+import { Jumbotron } from 'reactstrap';
 
 import Icon from './../../imgs/Icon.png';
 
