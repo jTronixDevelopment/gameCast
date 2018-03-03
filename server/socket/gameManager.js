@@ -61,6 +61,20 @@ class GameManager{
     }
   }
 
+  isValideRoom(room){
+    return this.rooms[room]?true:false;
+  }
+
+  isValidPlayer(msgObject){
+    var validPlayer = false;
+    gameManager.rooms[msgObject.room]['users'].forEach((user,ind)=>{
+      if(user){
+      }
+    })
+    return validPlayer;
+  }
+
+
 }
 
 module.exports = new GameManager(codeGenerator);

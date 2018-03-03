@@ -6,6 +6,19 @@ import './style.css';
 import Button from './../../components/button';
 import io from 'socket.io-client';
 
+function msg(parameters){
+  //auto
+  this.origin = "client";
+  this.originSocket = "XXXXX"
+  this.roomCode = "XXXXX";
+  //filled in
+  this.endPoint = "tv";
+  this.event = "test";
+  this.msg = { test : "Test" };
+  this.toAll = false;
+  this.socket = "none";
+}
+
 export default class Test extends Component {
   constructor(){
     super();
@@ -26,14 +39,10 @@ export default class Test extends Component {
     this.sendTo = document.getElementById('sendTo').value;
   }
   onSnedMsg(){
-    this.socket.emit('msgRec',{
-      endPoint:this.sendTo,
-      origin:'client',
-      toAll:false,
-      msg:"FUCK",
-      action:"Testing"
-    })
+    this.socket.emit('msgRec',new msg())
   }
+
+
 
   render() {
     return (

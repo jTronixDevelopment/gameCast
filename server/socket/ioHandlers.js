@@ -52,10 +52,40 @@ var ioHandler = (socket)=>{
 //=== Socket Manger logic ======================================================
 //==============================================================================
 
-function socketManager(msgObject){
+// all keys exist
+function isValidMessage(msgObject){
+  if(msgObject){
+    ["endPoint","origin","event","msg","toAll","socket","roomCode"].forEach((key)=>{
+      if(!(msgObject[key] != undefined)) {
+        console.log(`${key} Does not exist in object`)
+        return false;
+      }
+    });
+  } else {
+    console.log("Message Object DNE");
+    return false;
+  }
+  return true;
+}
+
+// sender has permission to send something
+function validToAll(msgObject){
+  //check for valid roomcode
+  var roomCode = msgObject.roomCode;
+  if(gameManager.isValideRoom(roomCode)&&gameManager.rooms[roomCode]){
+
+  }
+}
+
+function validToOne(){
+
+}
+
+// route users to the correct end point
+function socketRouter(msgObject){
   // This function will route req to the appropriate handler
   // check if object exsist
-  if (msgObject.endPoint) {
+  if (isValidMessage(msgObject)) {
     switch (msgObject.endPoint) {
       case "server":
         serverSocketHandler(msgObject);
@@ -69,21 +99,22 @@ function socketManager(msgObject){
       default:
     }
   } else {
-    throw "msgObject.endPoint DNE"
+    throw "msgObject.endPoint DNE";
     socket.emit('err','msgObject.endPoint DNE')
   }
 }
 
+
 function serverSocketHandler(msgObject){
-  console.log("MSG for Server :",msgObject)
+  console.log("MSG for Server :", msgObject)
 }
 
 function clientSocketHandler(msgObject){
-  console.log("MSG for client",msgObject)
+  console.log("MSG for client", msgObject)
 }
 
 function tvSocketHandler(msgObject){
-  console.log("MSG for TV",msgObject)
+  console.log("MSG for TV", msgObject)
 }
 
 //==============================================================================
@@ -107,7 +138,7 @@ var gameHandler1 = (socket)=>{
   //=== Socket Manager =========================================================
 
   socket.on("msgRec",(msg)=>{
-    socketManager(msg);
+    socketRouter(msg);
   });
 
 }
