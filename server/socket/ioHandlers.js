@@ -59,23 +59,6 @@ var ioHandler = (socket)=>{
 // valid for area
 // Send
 
-
-// all keys exist for basic message
-function isValidMessage(msgObject){
-  if(msgObject){
-    ["endPoint","origin","event","msg","toAll","socket","roomCode"].forEach((key)=>{
-      if(!(msgObject[key] != undefined)) {
-        console.log(`${key} Does not exist in object`)
-        return false;
-      }
-    });
-  } else {
-    console.log("Message Object DNE");
-    return false;
-  }
-  return true;
-}
-
 // route users to the correct end point
 function socketRouter(msgObject){
   // This function will route req to the appropriate handler
@@ -95,9 +78,27 @@ function socketRouter(msgObject){
     }
   } else {
     throw "msgObject.endPoint DNE";
-    socket.emit('err','msgObject.endPoint DNE')
+    socket.emit('err','msgObject.endPoint DNE');
   }
 }
+
+// all keys exist for basic message
+function isValidMessage(msgObject){
+  if(msgObject){
+    ["endPoint","origin","event","msg","toAll","socket","roomCode"].forEach((key)=>{
+      if(!(msgObject[key] != undefined)) {
+        console.log(`${key} Does not exist in object`)
+        return false;
+      }
+    });
+  } else {
+    console.log("Message Object DNE");
+    return false;
+  }
+  return true;
+}
+
+//Routers
 
 function serverSocketHandler(msgObject){
   console.log("MSG for Server :", msgObject);
