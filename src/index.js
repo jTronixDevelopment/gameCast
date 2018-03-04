@@ -2,7 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router'
-require('bootstrap')
 
 import Routes from './routes';
 
