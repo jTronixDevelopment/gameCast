@@ -69,7 +69,7 @@ function isValidMessage(msgObject){
 }
 
 // sender has permission to send something
-function validToAll(msgObject){
+function isValidToAll(msgObject){
   //check for valid roomcode
   var roomCode = msgObject.roomCode;
   if(gameManager.isValideRoom(roomCode)&&gameManager.rooms[roomCode]){
@@ -77,7 +77,7 @@ function validToAll(msgObject){
   }
 }
 
-function validToOne(){
+function isValidToOne(){
 
 }
 
@@ -103,7 +103,6 @@ function socketRouter(msgObject){
     socket.emit('err','msgObject.endPoint DNE')
   }
 }
-
 
 function serverSocketHandler(msgObject){
   console.log("MSG for Server :", msgObject)
