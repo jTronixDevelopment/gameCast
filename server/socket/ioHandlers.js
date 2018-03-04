@@ -52,7 +52,15 @@ var ioHandler = (socket)=>{
 //=== Socket Manger logic ======================================================
 //==============================================================================
 
-// all keys exist
+//Steps
+// Parse
+// Valid Object
+// route to corret area
+// valid for area
+// Send
+
+
+// all keys exist for basic message
 function isValidMessage(msgObject){
   if(msgObject){
     ["endPoint","origin","event","msg","toAll","socket","roomCode"].forEach((key)=>{
@@ -68,24 +76,11 @@ function isValidMessage(msgObject){
   return true;
 }
 
-// sender has permission to send something
-function isValidToAll(msgObject){
-  //check for valid roomcode
-  var roomCode = msgObject.roomCode;
-  if(gameManager.isValideRoom(roomCode)&&gameManager.rooms[roomCode]){
-
-  }
-}
-
-function isValidToOne(){
-
-}
-
 // route users to the correct end point
 function socketRouter(msgObject){
   // This function will route req to the appropriate handler
-  // check if object exsist
-  if (isValidMessage(msgObject)) {
+  // check if object exsist and if play is okay to do so and room exisits
+  if (isValidMessage(msgObject)&&gameManager.isValidPlayer(msgObject)&&gameManager.isValidRoomCode(msgObject)) {
     switch (msgObject.endPoint) {
       case "server":
         serverSocketHandler(msgObject);
@@ -105,15 +100,36 @@ function socketRouter(msgObject){
 }
 
 function serverSocketHandler(msgObject){
-  console.log("MSG for Server :", msgObject)
+  console.log("MSG for Server :", msgObject);
+  switch (msgObject.action) {
+    case "test":
+      // do something
+      break;
+    default:
+
+  }
 }
 
 function clientSocketHandler(msgObject){
-  console.log("MSG for client", msgObject)
+  console.log("MSG for client", msgObject);
+  switch (msgObject.action) {
+    case 'test':
+      // do something
+      break;
+    default:
+
+  }
 }
 
 function tvSocketHandler(msgObject){
-  console.log("MSG for TV", msgObject)
+  console.log("MSG for TV", msgObject);
+  switch (msgObject.action) {
+    case "test":
+      // do something
+      break;
+    default:
+
+  }
 }
 
 //==============================================================================
