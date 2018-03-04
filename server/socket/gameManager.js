@@ -67,14 +67,13 @@ class GameManager{
 
   isValidPlayer(msgObject){
     var validPlayer = false;
-    gameManager.rooms[msgObject.room]['users'].forEach((user,ind)=>{
-      if(user){
+    gameManager.rooms[msgObject.roomCode]['users'].forEach((user,ind)=>{
+      if(msgObject.origin === user.socketId){
+        validPlayer = true;
       }
     })
     return validPlayer;
   }
-
-
 }
 
 module.exports = new GameManager(codeGenerator);
