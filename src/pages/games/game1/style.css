@@ -8,11 +8,17 @@
 div.meme-it-container{
   width: 100vw;
   height: 100vh;
-  background: lightgrey;
+  background: blue;
 }
 
 
 img.background-logo{
   width:100vw;
-  background: white;
+  background: #007bff;
+}
+
+
+body{
+  overflow-x: hidden;
+  overflow-y: hidden;
 }

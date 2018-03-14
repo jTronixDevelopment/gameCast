@@ -63,20 +63,29 @@ var ioHandler = (socket)=>{
 function socketRouter(msgObject){
   // This function will route req to the appropriate handler
   // check if object exsist and if play is okay to do so and room exisits
-  if (isValidMessage(msgObject)&&gameManager.isValidPlayer(msgObject)&&gameManager.isValidRoomCode(msgObject)) {
-    switch (msgObject.endPoint) {
+  if (isValidMessage(msgObject)){
+    console.log(`Valid Message ${ Object.keys(msgObject) }`)
+    if(gameManager.isValidRoom(msgObject)) {
+      console.log("valid room");
+      if(true){//gameManager.isValidPlayer(msgObject)){
+        switch (msgObject.endPoint) {
       case "server":
+        console.log("messge for server")
         serverSocketHandler(msgObject);
         break;
       case "client":
+        console.log("messge for tv")
         clientSocketHandler(msgObject);
         break;
       case "tv":
+        console.log("messge for client")
         tvSocketHandler(msgObject);
         break;
       default:
     }
-  } else {
+  }
+}
+} else {
     throw "msgObject.endPoint DNE";
     socket.emit('err','msgObject.endPoint DNE');
   }
@@ -95,16 +104,17 @@ function isValidMessage(msgObject){
     console.log("Message Object DNE");
     return false;
   }
+  console.log("Valid Message")
   return true;
 }
 
 //Routers
 
 function serverSocketHandler(msgObject){
-  console.log("MSG for Server :", msgObject);
+  console.log("MSG for Server : ", msgObject);
   switch (msgObject.action) {
     case "test":
-      // do something
+      console.log('Test working');
       break;
     default:
 
@@ -143,6 +153,7 @@ var gameHandler1 = (socket)=>{
   socket.on('test',()=>{ console.log("poop")});
 
   // only for TV to execute
+  // TODO: remove to switch to router
 
   socket.on('getRoomCode',()=>{
     console.log('Getting Game Code')
@@ -155,6 +166,7 @@ var gameHandler1 = (socket)=>{
 
   socket.on("msgRec",(msg)=>{
     socketRouter(msg);
+    console.log("message")
   });
 
 }

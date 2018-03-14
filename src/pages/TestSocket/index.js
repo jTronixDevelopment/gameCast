@@ -9,10 +9,10 @@ import io from 'socket.io-client';
 function msg(parameters){
   //auto
   this.origin = "client";
-  this.originSocket = "XXXXX"
-  this.roomCode = "XXXXX";
+  this.originSocket = "XXXXXX"
+  this.roomCode = "XXXXXX";
   //filled in
-  this.endPoint = "tv";
+  this.endPoint = "server";
   this.event = "test";
   this.msg = { test : "Test" };
   this.toAll = false;

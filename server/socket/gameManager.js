@@ -4,54 +4,53 @@ let Game1 = require('./games/game1');
 let Game2 = require('./games/game2');
 let TAG = 'Game Manager'
 
-class GameManager{
-  constructor(codeGenerator){
+class GameManager {
+  constructor(codeGenerator) {
     this.rooms = {
-      'XXXXXX' : {
-        users : [],
-        gameType : "game1",
-        gameInstance : {}
+      'XXXXXX': {
+        users: [],
+        gameType: "game1",
+        gameInstance: {}
       },
-      'AAAAAA' : {
-        users : [],
-        gameType : "game2",
-        gameInstance : {}
+      'AAAAAA': {
+        users: [],
+        gameType: "game2",
+        gameInstance: {}
       }
     };
-    for(var i =0; i< this.rooms.length;i++)
+    for (var i = 0; i < this.rooms.length; i++)
       console.log(this.rooms[i]);
 
     this.codeGenerator = codeGenerator;
   }
 
-  getUniqueCode(){
+  getUniqueCode() {
     return this.codeGenerator.generate({
-      charset : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-      length : 5
+      charset: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      length: 5
     });
   }
 
-  onJoinGame(roomCode){
-  }
+  onJoinGame(roomCode) {}
 
-  addNewRoom(roomCode,gameType){
-    if(roomCode && gameType){
+  addNewRoom(roomCode, gameType) {
+    if (roomCode && gameType) {
       this.rooms[roomCode] = this.getGameObj(gameType)
       console.log(this.rooms[roomCode])
-    } else{
+    } else {
       throw `${TAG} : roomCode or gameType undefined`;
     }
   }
 
-  deleteRoom(room){
+  deleteRoom(room) {
 
   }
 
-  hasRoom(room){
+  hasRoom(room) {
 
   }
 
-  getGameObj(gameType){
+  getGameObj(gameType) {
     switch (gameType) {
       case 'game1':
         return new Game1()
@@ -61,19 +60,20 @@ class GameManager{
     }
   }
 
-  isValideRoom(room){
-    return this.rooms[room]?true:false;
+  isValidRoom(msgObject) {
+    return this.rooms[msgObject.roomCode] ? true : false;
   }
 
-  isValidPlayer(msgObject){
+  isValidPlayer(msgObject) {
     var validPlayer = false;
-    gameManager.rooms[msgObject.roomCode]['users'].forEach((user,ind)=>{
-      if(msgObject.origin === user.socketId){
+    this.rooms[msgObject.roomCode]['users'].forEach((user, ind) => {
+      if (msgObject.origin === user.socketId) {
         validPlayer = true;
       }
     })
     return validPlayer;
   }
+
 }
 
 module.exports = new GameManager(codeGenerator);
